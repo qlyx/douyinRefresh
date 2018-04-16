@@ -1,5 +1,6 @@
 # douyinRefresh
 记得star哦
+
 ![](https://github.com/qlyx/douyinRefresh/blob/master/demo.gif)
 
 既然是仿抖音效果，那首先就是要分析这个效果的实现思路，根据观察，实现思路大致如下（如果你有什么更好的方案也不妨告诉我哦，交流使人进步）：
@@ -178,4 +179,5 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), di
 ![](https://github.com/qlyx/douyinRefresh/blob/master/erweima.png)
 
 谢谢打赏，使用时如有问题可扫下方二维码加我哦
+
 ![](https://github.com/qlyx/douyinRefresh/blob/master/jiawo.jpg)
