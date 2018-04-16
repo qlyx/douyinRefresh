@@ -1,6 +1,6 @@
 # douyinRefresh
 记得star哦
-![效果图](https://upload-images.jianshu.io/upload_images/2989469-91ebb7360337e4a8.gif?imageMogr2/auto-orient/strip)
+
 
 既然是仿抖音效果，那首先就是要分析这个效果的实现思路，根据观察，实现思路大致如下（如果你有什么更好的方案也不妨告诉我哦，交流使人进步）：
 1、上拉时页面有翻页效果，可以用scrollview的pagingEnabled来实现，也就是说列表页不管你用tableview还是collectionview，只要每个cell是全屏的就可以
@@ -20,8 +20,7 @@
 创建tableview、mainViewNavigitionView（导航条）、RefreshNavigitionView（刷新视图，初始alpha为0）、startPoint（起始触摸点），基本样式都写完之后就开始运行了![层级关系就是这样](https://upload-images.jianshu.io/upload_images/2989469-260111c66eb24577.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)运行起来大面上一看，嗯，长得还挺像的，上拉翻页也没问题，但是，重点来了：
 ######我手指下滑的时候touchesBegan等系列方法根本就没走，what?这怎么办，说好的监听手指移动距离的，方法都不走我怎么监听？
 经过一番搜索查证，原来是事件响应链的问题，当我们点击屏幕时，第一响应者应该是UITableView，而我们调用的touchBegan其实是ViewController的View的方法，所以无法被调用，如果不了解的话下面两篇文章可以帮到你：
-[从iOS的事件响应链看TableView为什么不响应touchesBegan](https://www.jianshu.com/p/d77164f8cac5)
-[让UITableView响应touch事件](https://blog.csdn.net/aaidong/article/details/45914435)
+
 根据文中方法，我给TableView写了个基类，添加了touches相关的一些代理方法，运行起来，终于可以监听手指移动了
 ######但是，问题又来了，我在touchesMoved打印了手指触摸点的y值，我发现手指滑动一会儿后控制台就不再打印了，每次位移大概十几个像素，并且松手后touchesEnded方法也不怎么走（这个方法不太灵光啊）
 
@@ -36,7 +35,9 @@
 
 ######到这里基本上上拉下拉的操作都可以顺畅完成了，接下来就该实现动画了，frame的移动，以及松手后圆环一直转圈这些都好做，困住我的是手指下拉时圆环随着手指下滑位移旋转，也就是说它既要随着父视图RefreshNavigitionView下移，还要以自己为中心旋转，手指滑动它就转，手指不动它就不转
 
-旋转动画我选的是transform，松手后圆环旋转用的是CABasicAnimation，但它是layer动画，动画结束后会复位，实际上view本身没有转动，使用过程中就会出现圆环转一下回去又转一下又回去的卡顿现象（当然也可以用代码让它不要复位：[CABasicAnimation使用总结](https://www.jianshu.com/p/02c341c748f9) 比较麻烦，代码也比transform多，transform只需一行代码即可旋转）
+旋转动画我选的是transform，松手后圆环旋转用的是CABasicAnimation，但它是layer动画，动画结束后会复位，实际上view本身没有转动，使用过程中就会出现圆环转一下回去又转一下又回去的卡顿现象（当然也可以用代码让它不要复位：
+
+比较麻烦，代码也比transform多，transform只需一行代码即可旋转）
 transform是叠加效果，可以根据上次旋转的角度继续旋转，如果我把度数写成固定值，那么圆环就会随着手指移动均匀旋转，动画也比较流畅
 
 >理想很丰满，现实很残酷呀。transform动画写上之后，圆环居然随着手指移动乱转，一会放大，一会缩小，一会翻转，网上查了各种transform的使用方法，我写的没问题啊，着实困了我不少时间，只好求助小伙伴了。经查证是自动布局的锅，transform是frame动画，需要圆环确切的frame,而我用的是SDAutolayout，就算updatelayout也不好使，小圆环的位置如果改成frame，动画就没问题了，然后又试了masonry,也是好使的，所以说有时候老框架的优势还是很明显的
