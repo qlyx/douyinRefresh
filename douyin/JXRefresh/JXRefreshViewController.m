@@ -9,9 +9,10 @@
 
 #import "JXRefreshViewController.h"
 #import "RefreshNavigitionView.h"
-
-
-@interface JXRefreshViewController ()
+#import "UITableView+WebVideoCache.h"
+#import "UIView+WebVideoCache.h"
+#import "VideoTableViewCell.h"
+@interface JXRefreshViewController ()<UIGestureRecognizerDelegate>
 {
     CGPoint startPoint;
     UIView *_mainViewNavigitionView;
@@ -45,6 +46,7 @@
     //用来响应touch的view
     _clearView = [[UIView alloc] init];
     _clearView.frame = CGRectMake(0, 0, kWidth, kHeight);
+    //_clearView.backgroundColor = RGBACOLOR(255, 0, 0, 0.2);
     [self.view addSubview:_clearView];
     
     [self.view addSubview:self.refreshNavigitionView];
@@ -54,7 +56,8 @@
     
     //添加观察者
     [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
-    
+    //触摸结束恢复原位-松手回弹
+    self.scrollView.contentOffset = CGPointMake(0, 0);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
@@ -63,8 +66,10 @@
     }
 }
 #pragma mark - touch
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+     NSLog(@"%@",NSStringFromClass([self.scrollView  class]));
     if (self.scrollView.contentOffset.y <=0&&self.refreshStatus == REFRESH_Normal) {
         //当tableview停在第一个cell并且是正常状态才记录起始触摸点，防止页面在刷新时用户再次向下拖拽页面造成多次下拉刷新
         startPoint = [touches.anyObject locationInView:self.view];
@@ -96,8 +101,8 @@
             _refreshNavigitionView.frame = frame;
             if (_mainViewNavigitionView) {
                 _mainViewNavigitionView.alpha = 1-alpha;
-                frame = _mainViewNavigitionView.frame;
-                frame.origin.y = moveDistance;
+//                frame = _mainViewNavigitionView.frame;
+//                frame.origin.y = moveDistance;
                 _mainViewNavigitionView.frame = frame;
             }
             //在整体判断为下拉刷新的情况下，还需要对上一个触摸点和当前触摸点进行比对，判断圆圈旋转方向，下移逆时针，上移顺时针
@@ -129,12 +134,24 @@
         if (moveDistance>MaxScroll) {
             //上拉距离超过MaxScroll，就让tableview滚动到第二个cell，模仿tableview翻页效果
             _clearView.hidden = YES;
-            //[self.tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+            
+            
             [UIView animateWithDuration:0.3 animations:^{
                 self.scrollView.contentOffset = CGPointMake(0, kHeight);
             }];
+            NSLog(@"%@",NSStringFromClass([self.scrollView  class]));
+            if ([NSStringFromClass([self.scrollView class]) isEqualToString:@"UITableView"]) {
+                UITableView *tab = (UITableView *)self.scrollView;
+                VideoTableViewCell *cell = [tab cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+                [cell.jp_videoPlayView jp_resumeMutePlayWithURL:cell.jp_videoURL
+                                             bufferingIndicator:nil
+                                                   progressView:nil
+                                        configurationCompletion:^(UIView * _Nonnull view, JPVideoPlayerModel * _Nonnull playerModel) {
+                                            view.jp_muted = NO;
+                                        }];
+            }
             
-        }else if(moveDistance>0&&moveDistance<MaxScroll){
+        }else {
             self.scrollView.contentOffset = CGPointMake(0, moveDistance);
         }
     }
@@ -142,7 +159,16 @@
 - (void)touchesEnded:(NSSet *)touches
            withEvent:(UIEvent *)event
 {
-    //清楚起始触摸点
+  
+    CGPoint currentPoint = [touches.anyObject locationInView:self.view];
+    
+    float moveDistance = currentPoint.y-startPoint.y;
+    if (moveDistance==0) {
+        //判断为轻点屏幕，手动调用一下cell上视频的播放/暂停按钮
+        [self tapView];
+        
+    }
+    //清除起始触摸点
     startPoint = CGPointZero;
     //触摸结束恢复原位-松手回弹
     [UIView animateWithDuration:0.3 animations:^{
@@ -150,8 +176,6 @@
         frame.origin.y = 0;
         _refreshNavigitionView.frame = frame;
         if (_mainViewNavigitionView) {
-            frame = _mainViewNavigitionView.frame;
-            frame.origin.y = 0;
             _mainViewNavigitionView.frame = frame;
         }
         if (self.scrollView.contentOffset.y<MaxScroll) {

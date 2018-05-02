@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B473BFE208864C200F0B8BE /* ChoseCoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473BFD208864C200F0B8BE /* ChoseCoverViewController.m */; };
+		7B473C0120886E1200F0B8BE /* CoverImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0020886E1200F0B8BE /* CoverImageCollectionViewCell.m */; };
+		7B473C062088824D00F0B8BE /* PublishVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C052088824D00F0B8BE /* PublishVideoViewController.m */; };
+		7B473C0A208882D000F0B8BE /* JXCustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C09208882D000F0B8BE /* JXCustomTextView.m */; };
+		7B473C0D208884D200F0B8BE /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0C208884D200F0B8BE /* Tool.m */; };
+		7B473C102088A6BA00F0B8BE /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0F2088A6BA00F0B8BE /* VideoView.m */; };
 		7B4C3C2B20807E20000C56EF /* JXRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4C3C2A20807E20000C56EF /* JXRefreshViewController.m */; };
 		7B4C3C2F2080990F000C56EF /* circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B4C3C2D2080990F000C56EF /* circle@3x.png */; };
 		7B4C3C302080990F000C56EF /* circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B4C3C2E2080990F000C56EF /* circle@2x.png */; };
@@ -21,10 +27,23 @@
 		7B54BA8A207F04F000370B91 /* MainViewNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA89207F04F000370B91 /* MainViewNavigitionView.m */; };
 		7B54BA8D207F050000370B91 /* RefreshNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA8C207F050000370B91 /* RefreshNavigitionView.m */; };
 		7B54BA90207F067800370B91 /* JXUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA8F207F067800370B91 /* JXUIKit.m */; };
-		7B54BA9D207F077300370B91 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7B54BA94207F077300370B91 /* LICENSE */; };
-		7B54BA9E207F077300370B91 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7B54BA95207F077300370B91 /* README.md */; };
-		7B54BA9F207F077300370B91 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA9A207F077300370B91 /* UITableView+SDAutoTableViewCellHeight.m */; };
-		7B54BAA0207F077300370B91 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA9C207F077300370B91 /* UIView+SDAutoLayout.m */; };
+		7BB35E3B2086E3C6004965A8 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E3A2086E3C6004965A8 /* VideoTableViewCell.m */; };
+		7BB35E5B2086EBF1004965A8 /* JPResourceLoadingRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E3E2086EBF1004965A8 /* JPResourceLoadingRequestTask.m */; };
+		7BB35E5C2086EBF1004965A8 /* JPVideoPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7BB35E3F2086EBF1004965A8 /* JPVideoPlayer.bundle */; };
+		7BB35E5D2086EBF1004965A8 /* JPVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E412086EBF1004965A8 /* JPVideoPlayer.m */; };
+		7BB35E5E2086EBF1004965A8 /* JPVideoPlayerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E432086EBF1004965A8 /* JPVideoPlayerCache.m */; };
+		7BB35E5F2086EBF1004965A8 /* JPVideoPlayerCacheFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E452086EBF1004965A8 /* JPVideoPlayerCacheFile.m */; };
+		7BB35E602086EBF1004965A8 /* JPVideoPlayerCachePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E472086EBF1004965A8 /* JPVideoPlayerCachePath.m */; };
+		7BB35E612086EBF1004965A8 /* JPVideoPlayerCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E492086EBF1004965A8 /* JPVideoPlayerCompat.m */; };
+		7BB35E622086EBF1004965A8 /* JPVideoPlayerControlViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E4B2086EBF1004965A8 /* JPVideoPlayerControlViews.m */; };
+		7BB35E632086EBF1004965A8 /* JPVideoPlayerDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E4D2086EBF1004965A8 /* JPVideoPlayerDownloader.m */; };
+		7BB35E642086EBF1004965A8 /* JPVideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E4F2086EBF1004965A8 /* JPVideoPlayerManager.m */; };
+		7BB35E652086EBF1004965A8 /* JPVideoPlayerResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E522086EBF1004965A8 /* JPVideoPlayerResourceLoader.m */; };
+		7BB35E662086EBF1004965A8 /* JPVideoPlayerSupportUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E542086EBF1004965A8 /* JPVideoPlayerSupportUtils.m */; };
+		7BB35E672086EBF1004965A8 /* UITableView+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E562086EBF1004965A8 /* UITableView+WebVideoCache.m */; };
+		7BB35E682086EBF1004965A8 /* UITableViewCell+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E582086EBF1004965A8 /* UITableViewCell+WebVideoCache.m */; };
+		7BB35E692086EBF1004965A8 /* UIView+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E5A2086EBF1004965A8 /* UIView+WebVideoCache.m */; };
+		F1A82B5E8B2011BE8B79C738 /* libPods-douyin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274B0E5ED4AA4E2ECB9A5B27 /* libPods-douyin.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +64,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		274B0E5ED4AA4E2ECB9A5B27 /* libPods-douyin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-douyin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7974DB79142035537FCF0D3B /* Pods-douyin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-douyin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-douyin/Pods-douyin.debug.xcconfig"; sourceTree = "<group>"; };
+		7B473BFC208864C200F0B8BE /* ChoseCoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoseCoverViewController.h; sourceTree = "<group>"; };
+		7B473BFD208864C200F0B8BE /* ChoseCoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoseCoverViewController.m; sourceTree = "<group>"; };
+		7B473BFF20886E1200F0B8BE /* CoverImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverImageCollectionViewCell.h; sourceTree = "<group>"; };
+		7B473C0020886E1200F0B8BE /* CoverImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoverImageCollectionViewCell.m; sourceTree = "<group>"; };
+		7B473C042088824D00F0B8BE /* PublishVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishVideoViewController.h; sourceTree = "<group>"; };
+		7B473C052088824D00F0B8BE /* PublishVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishVideoViewController.m; sourceTree = "<group>"; };
+		7B473C08208882CF00F0B8BE /* JXCustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCustomTextView.h; sourceTree = "<group>"; };
+		7B473C09208882D000F0B8BE /* JXCustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCustomTextView.m; sourceTree = "<group>"; };
+		7B473C0B208884D200F0B8BE /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
+		7B473C0C208884D200F0B8BE /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
+		7B473C0E2088A6BA00F0B8BE /* VideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
+		7B473C0F2088A6BA00F0B8BE /* VideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
 		7B4C3C2920807E20000C56EF /* JXRefreshViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXRefreshViewController.h; sourceTree = "<group>"; };
 		7B4C3C2A20807E20000C56EF /* JXRefreshViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXRefreshViewController.m; sourceTree = "<group>"; };
 		7B4C3C2D2080990F000C56EF /* circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle@3x.png"; sourceTree = "<group>"; };
@@ -71,14 +104,40 @@
 		7B54BA8C207F050000370B91 /* RefreshNavigitionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshNavigitionView.m; sourceTree = "<group>"; };
 		7B54BA8E207F067800370B91 /* JXUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXUIKit.h; sourceTree = "<group>"; };
 		7B54BA8F207F067800370B91 /* JXUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXUIKit.m; sourceTree = "<group>"; };
-		7B54BA94207F077300370B91 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		7B54BA95207F077300370B91 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7B54BA98207F077300370B91 /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
-		7B54BA99207F077300370B91 /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
-		7B54BA9A207F077300370B91 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
-		7B54BA9B207F077300370B91 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
-		7B54BA9C207F077300370B91 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
 		7B54BAF6207F2E8E00370B91 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		7BB35E392086E3C6004965A8 /* VideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
+		7BB35E3A2086E3C6004965A8 /* VideoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewCell.m; sourceTree = "<group>"; };
+		7BB35E3D2086EBF1004965A8 /* JPResourceLoadingRequestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPResourceLoadingRequestTask.h; sourceTree = "<group>"; };
+		7BB35E3E2086EBF1004965A8 /* JPResourceLoadingRequestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPResourceLoadingRequestTask.m; sourceTree = "<group>"; };
+		7BB35E3F2086EBF1004965A8 /* JPVideoPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JPVideoPlayer.bundle; sourceTree = "<group>"; };
+		7BB35E402086EBF1004965A8 /* JPVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayer.h; sourceTree = "<group>"; };
+		7BB35E412086EBF1004965A8 /* JPVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayer.m; sourceTree = "<group>"; };
+		7BB35E422086EBF1004965A8 /* JPVideoPlayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCache.h; sourceTree = "<group>"; };
+		7BB35E432086EBF1004965A8 /* JPVideoPlayerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCache.m; sourceTree = "<group>"; };
+		7BB35E442086EBF1004965A8 /* JPVideoPlayerCacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCacheFile.h; sourceTree = "<group>"; };
+		7BB35E452086EBF1004965A8 /* JPVideoPlayerCacheFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCacheFile.m; sourceTree = "<group>"; };
+		7BB35E462086EBF1004965A8 /* JPVideoPlayerCachePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCachePath.h; sourceTree = "<group>"; };
+		7BB35E472086EBF1004965A8 /* JPVideoPlayerCachePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCachePath.m; sourceTree = "<group>"; };
+		7BB35E482086EBF1004965A8 /* JPVideoPlayerCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerCompat.h; sourceTree = "<group>"; };
+		7BB35E492086EBF1004965A8 /* JPVideoPlayerCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerCompat.m; sourceTree = "<group>"; };
+		7BB35E4A2086EBF1004965A8 /* JPVideoPlayerControlViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerControlViews.h; sourceTree = "<group>"; };
+		7BB35E4B2086EBF1004965A8 /* JPVideoPlayerControlViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerControlViews.m; sourceTree = "<group>"; };
+		7BB35E4C2086EBF1004965A8 /* JPVideoPlayerDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerDownloader.h; sourceTree = "<group>"; };
+		7BB35E4D2086EBF1004965A8 /* JPVideoPlayerDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerDownloader.m; sourceTree = "<group>"; };
+		7BB35E4E2086EBF1004965A8 /* JPVideoPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerManager.h; sourceTree = "<group>"; };
+		7BB35E4F2086EBF1004965A8 /* JPVideoPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerManager.m; sourceTree = "<group>"; };
+		7BB35E502086EBF1004965A8 /* JPVideoPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerProtocol.h; sourceTree = "<group>"; };
+		7BB35E512086EBF1004965A8 /* JPVideoPlayerResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerResourceLoader.h; sourceTree = "<group>"; };
+		7BB35E522086EBF1004965A8 /* JPVideoPlayerResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerResourceLoader.m; sourceTree = "<group>"; };
+		7BB35E532086EBF1004965A8 /* JPVideoPlayerSupportUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPVideoPlayerSupportUtils.h; sourceTree = "<group>"; };
+		7BB35E542086EBF1004965A8 /* JPVideoPlayerSupportUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPVideoPlayerSupportUtils.m; sourceTree = "<group>"; };
+		7BB35E552086EBF1004965A8 /* UITableView+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+WebVideoCache.h"; sourceTree = "<group>"; };
+		7BB35E562086EBF1004965A8 /* UITableView+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+WebVideoCache.m"; sourceTree = "<group>"; };
+		7BB35E572086EBF1004965A8 /* UITableViewCell+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+WebVideoCache.h"; sourceTree = "<group>"; };
+		7BB35E582086EBF1004965A8 /* UITableViewCell+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+WebVideoCache.m"; sourceTree = "<group>"; };
+		7BB35E592086EBF1004965A8 /* UIView+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebVideoCache.h"; sourceTree = "<group>"; };
+		7BB35E5A2086EBF1004965A8 /* UIView+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebVideoCache.m"; sourceTree = "<group>"; };
+		D3EC6DAE1731AF393D5215E4 /* Pods-douyin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-douyin.release.xcconfig"; path = "Pods/Target Support Files/Pods-douyin/Pods-douyin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A82B5E8B2011BE8B79C738 /* libPods-douyin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +166,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B473BFA2088641E00F0B8BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BB35E392086E3C6004965A8 /* VideoTableViewCell.h */,
+				7BB35E3A2086E3C6004965A8 /* VideoTableViewCell.m */,
+				7B54BA88207F04F000370B91 /* MainViewNavigitionView.h */,
+				7B54BA89207F04F000370B91 /* MainViewNavigitionView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B473BFB2088646600F0B8BE /* 视频 */ = {
+			isa = PBXGroup;
+			children = (
+				7B473C03208881B000F0B8BE /* 发布视频 */,
+				7B473C02208881A400F0B8BE /* 选封面 */,
+			);
+			path = "视频";
+			sourceTree = "<group>";
+		};
+		7B473C02208881A400F0B8BE /* 选封面 */ = {
+			isa = PBXGroup;
+			children = (
+				7B473BFC208864C200F0B8BE /* ChoseCoverViewController.h */,
+				7B473BFD208864C200F0B8BE /* ChoseCoverViewController.m */,
+				7B473BFF20886E1200F0B8BE /* CoverImageCollectionViewCell.h */,
+				7B473C0020886E1200F0B8BE /* CoverImageCollectionViewCell.m */,
+			);
+			path = "选封面";
+			sourceTree = "<group>";
+		};
+		7B473C03208881B000F0B8BE /* 发布视频 */ = {
+			isa = PBXGroup;
+			children = (
+				7B473C042088824D00F0B8BE /* PublishVideoViewController.h */,
+				7B473C052088824D00F0B8BE /* PublishVideoViewController.m */,
+				7B473C072088829A00F0B8BE /* views */,
+			);
+			path = "发布视频";
+			sourceTree = "<group>";
+		};
+		7B473C072088829A00F0B8BE /* views */ = {
+			isa = PBXGroup;
+			children = (
+				7B473C08208882CF00F0B8BE /* JXCustomTextView.h */,
+				7B473C09208882D000F0B8BE /* JXCustomTextView.m */,
+				7B473C0E2088A6BA00F0B8BE /* VideoView.h */,
+				7B473C0F2088A6BA00F0B8BE /* VideoView.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		7B4C3C2C20809058000C56EF /* JXRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +238,8 @@
 				7B54BA6E207EF23700370B91 /* douyinTests */,
 				7B54BA79207EF23700370B91 /* douyinUITests */,
 				7B54BA54207EF23700370B91 /* Products */,
+				864FB081116FEB6C369FE193 /* Pods */,
+				8681891735274B74A0AD96E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,8 +263,8 @@
 				7B54BA91207F072C00370B91 /* Resource */,
 				7B54BA59207EF23700370B91 /* ViewController.h */,
 				7B54BA5A207EF23700370B91 /* ViewController.m */,
-				7B54BA88207F04F000370B91 /* MainViewNavigitionView.h */,
-				7B54BA89207F04F000370B91 /* MainViewNavigitionView.m */,
+				7B473BFB2088646600F0B8BE /* 视频 */,
+				7B473BFA2088641E00F0B8BE /* View */,
 				7B54BA5C207EF23700370B91 /* Main.storyboard */,
 				7B54BA5F207EF23700370B91 /* Assets.xcassets */,
 				7B54BA61207EF23700370B91 /* LaunchScreen.storyboard */,
@@ -182,7 +296,7 @@
 		7B54BA91207F072C00370B91 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				7B54BA93207F077300370B91 /* SDAutoLayout */,
+				7BB35E3C2086EBF1004965A8 /* JPVideoPlayer */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -192,38 +306,64 @@
 			children = (
 				7B54BA8E207F067800370B91 /* JXUIKit.h */,
 				7B54BA8F207F067800370B91 /* JXUIKit.m */,
+				7B473C0B208884D200F0B8BE /* Tool.h */,
+				7B473C0C208884D200F0B8BE /* Tool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		7B54BA93207F077300370B91 /* SDAutoLayout */ = {
+		7BB35E3C2086EBF1004965A8 /* JPVideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				7B54BA94207F077300370B91 /* LICENSE */,
-				7B54BA95207F077300370B91 /* README.md */,
-				7B54BA96207F077300370B91 /* SDAutoLayoutDemo */,
+				7BB35E3D2086EBF1004965A8 /* JPResourceLoadingRequestTask.h */,
+				7BB35E3E2086EBF1004965A8 /* JPResourceLoadingRequestTask.m */,
+				7BB35E3F2086EBF1004965A8 /* JPVideoPlayer.bundle */,
+				7BB35E402086EBF1004965A8 /* JPVideoPlayer.h */,
+				7BB35E412086EBF1004965A8 /* JPVideoPlayer.m */,
+				7BB35E422086EBF1004965A8 /* JPVideoPlayerCache.h */,
+				7BB35E432086EBF1004965A8 /* JPVideoPlayerCache.m */,
+				7BB35E442086EBF1004965A8 /* JPVideoPlayerCacheFile.h */,
+				7BB35E452086EBF1004965A8 /* JPVideoPlayerCacheFile.m */,
+				7BB35E462086EBF1004965A8 /* JPVideoPlayerCachePath.h */,
+				7BB35E472086EBF1004965A8 /* JPVideoPlayerCachePath.m */,
+				7BB35E482086EBF1004965A8 /* JPVideoPlayerCompat.h */,
+				7BB35E492086EBF1004965A8 /* JPVideoPlayerCompat.m */,
+				7BB35E4A2086EBF1004965A8 /* JPVideoPlayerControlViews.h */,
+				7BB35E4B2086EBF1004965A8 /* JPVideoPlayerControlViews.m */,
+				7BB35E4C2086EBF1004965A8 /* JPVideoPlayerDownloader.h */,
+				7BB35E4D2086EBF1004965A8 /* JPVideoPlayerDownloader.m */,
+				7BB35E4E2086EBF1004965A8 /* JPVideoPlayerManager.h */,
+				7BB35E4F2086EBF1004965A8 /* JPVideoPlayerManager.m */,
+				7BB35E502086EBF1004965A8 /* JPVideoPlayerProtocol.h */,
+				7BB35E512086EBF1004965A8 /* JPVideoPlayerResourceLoader.h */,
+				7BB35E522086EBF1004965A8 /* JPVideoPlayerResourceLoader.m */,
+				7BB35E532086EBF1004965A8 /* JPVideoPlayerSupportUtils.h */,
+				7BB35E542086EBF1004965A8 /* JPVideoPlayerSupportUtils.m */,
+				7BB35E552086EBF1004965A8 /* UITableView+WebVideoCache.h */,
+				7BB35E562086EBF1004965A8 /* UITableView+WebVideoCache.m */,
+				7BB35E572086EBF1004965A8 /* UITableViewCell+WebVideoCache.h */,
+				7BB35E582086EBF1004965A8 /* UITableViewCell+WebVideoCache.m */,
+				7BB35E592086EBF1004965A8 /* UIView+WebVideoCache.h */,
+				7BB35E5A2086EBF1004965A8 /* UIView+WebVideoCache.m */,
 			);
-			path = SDAutoLayout;
+			path = JPVideoPlayer;
 			sourceTree = "<group>";
 		};
-		7B54BA96207F077300370B91 /* SDAutoLayoutDemo */ = {
+		864FB081116FEB6C369FE193 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7B54BA97207F077300370B91 /* SDAutoLayout */,
+				7974DB79142035537FCF0D3B /* Pods-douyin.debug.xcconfig */,
+				D3EC6DAE1731AF393D5215E4 /* Pods-douyin.release.xcconfig */,
 			);
-			path = SDAutoLayoutDemo;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		7B54BA97207F077300370B91 /* SDAutoLayout */ = {
+		8681891735274B74A0AD96E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7B54BA98207F077300370B91 /* SDAutoLayout.h */,
-				7B54BA99207F077300370B91 /* UITableView+SDAutoTableViewCellHeight.h */,
-				7B54BA9A207F077300370B91 /* UITableView+SDAutoTableViewCellHeight.m */,
-				7B54BA9B207F077300370B91 /* UIView+SDAutoLayout.h */,
-				7B54BA9C207F077300370B91 /* UIView+SDAutoLayout.m */,
+				274B0E5ED4AA4E2ECB9A5B27 /* libPods-douyin.a */,
 			);
-			path = SDAutoLayout;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,9 +373,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B54BA7F207EF23700370B91 /* Build configuration list for PBXNativeTarget "douyin" */;
 			buildPhases = (
+				D6A9433061AB1C0EC8493B92 /* [CP] Check Pods Manifest.lock */,
 				7B54BA4F207EF23700370B91 /* Sources */,
 				7B54BA50207EF23700370B91 /* Frameworks */,
 				7B54BA51207EF23700370B91 /* Resources */,
+				0676CFC65512137014EC44F5 /* [CP] Embed Pods Frameworks */,
+				7E7FD03A7C33402ECA985D93 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -335,9 +478,8 @@
 				7B54BA63207EF23700370B91 /* LaunchScreen.storyboard in Resources */,
 				7B4C3C2F2080990F000C56EF /* circle@3x.png in Resources */,
 				7B54BA60207EF23700370B91 /* Assets.xcassets in Resources */,
-				7B54BA9E207F077300370B91 /* README.md in Resources */,
-				7B54BA9D207F077300370B91 /* LICENSE in Resources */,
 				7B54BA5E207EF23700370B91 /* Main.storyboard in Resources */,
+				7BB35E5C2086EBF1004965A8 /* JPVideoPlayer.bundle in Resources */,
 				7B4C3C302080990F000C56EF /* circle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,19 +500,89 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0676CFC65512137014EC44F5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-douyin/Pods-douyin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E7FD03A7C33402ECA985D93 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-douyin/Pods-douyin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6A9433061AB1C0EC8493B92 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-douyin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7B54BA4F207EF23700370B91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B54BA9F207F077300370B91 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
+				7B473C102088A6BA00F0B8BE /* VideoView.m in Sources */,
+				7BB35E5B2086EBF1004965A8 /* JPResourceLoadingRequestTask.m in Sources */,
+				7BB35E682086EBF1004965A8 /* UITableViewCell+WebVideoCache.m in Sources */,
+				7BB35E652086EBF1004965A8 /* JPVideoPlayerResourceLoader.m in Sources */,
+				7BB35E632086EBF1004965A8 /* JPVideoPlayerDownloader.m in Sources */,
+				7BB35E5F2086EBF1004965A8 /* JPVideoPlayerCacheFile.m in Sources */,
+				7BB35E5E2086EBF1004965A8 /* JPVideoPlayerCache.m in Sources */,
+				7BB35E602086EBF1004965A8 /* JPVideoPlayerCachePath.m in Sources */,
 				7B54BA8D207F050000370B91 /* RefreshNavigitionView.m in Sources */,
-				7B54BAA0207F077300370B91 /* UIView+SDAutoLayout.m in Sources */,
+				7B473C0A208882D000F0B8BE /* JXCustomTextView.m in Sources */,
+				7BB35E692086EBF1004965A8 /* UIView+WebVideoCache.m in Sources */,
+				7BB35E3B2086E3C6004965A8 /* VideoTableViewCell.m in Sources */,
 				7B54BA5B207EF23700370B91 /* ViewController.m in Sources */,
+				7BB35E5D2086EBF1004965A8 /* JPVideoPlayer.m in Sources */,
+				7BB35E612086EBF1004965A8 /* JPVideoPlayerCompat.m in Sources */,
 				7B54BA90207F067800370B91 /* JXUIKit.m in Sources */,
+				7B473C062088824D00F0B8BE /* PublishVideoViewController.m in Sources */,
+				7B473BFE208864C200F0B8BE /* ChoseCoverViewController.m in Sources */,
+				7BB35E622086EBF1004965A8 /* JPVideoPlayerControlViews.m in Sources */,
 				7B54BA66207EF23700370B91 /* main.m in Sources */,
+				7BB35E662086EBF1004965A8 /* JPVideoPlayerSupportUtils.m in Sources */,
+				7B473C0120886E1200F0B8BE /* CoverImageCollectionViewCell.m in Sources */,
+				7BB35E672086EBF1004965A8 /* UITableView+WebVideoCache.m in Sources */,
 				7B54BA8A207F04F000370B91 /* MainViewNavigitionView.m in Sources */,
 				7B4C3C2B20807E20000C56EF /* JXRefreshViewController.m in Sources */,
+				7B473C0D208884D200F0B8BE /* Tool.m in Sources */,
+				7BB35E642086EBF1004965A8 /* JPVideoPlayerManager.m in Sources */,
 				7B54BA58207EF23700370B91 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +744,7 @@
 		};
 		7B54BA80207EF23700370B91 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7974DB79142035537FCF0D3B /* Pods-douyin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -548,6 +761,7 @@
 		};
 		7B54BA81207EF23700370B91 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3EC6DAE1731AF393D5215E4 /* Pods-douyin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

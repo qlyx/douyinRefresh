@@ -9,7 +9,11 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 #import "JXUIKit.h"
-#import "UIView+SDAutoLayout.h"
+#import "Masonry.h"
+#import "Tool.h"
+
+// 弱引用
+#define MJWeakSelf __weak typeof(self) weakSelf = self;
 
 #define Color(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define kWidth          [UIScreen mainScreen].bounds.size.width
@@ -17,8 +21,18 @@
 
 //是否iPhoneX
 #define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_IOS_11 (([[[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."] objectAtIndex:0] intValue] >= 11) ? YES : NO)
+#define kTabbarHeight ((kDevice_Is_iPhoneX==NO)?49.0:83.0)
 #define kNavHeight ((kDevice_Is_iPhoneX==NO)?64.0:88.0)
+#define kbottomHeight ((kDevice_Is_iPhoneX==NO)?0:34)
 
+//获取版本号
+#define GET_SYSTEM_VERSION ([[UIDevice currentDevice].systemVersion doubleValue])
+#define IS_IPHONE_5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define IS_IPHONE_6P ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )736 ) < DBL_EPSILON )
+#define  kFont(x)  IS_IPHONE_5?[UIFont systemFontOfSize:(x-1)]:IS_IPHONE_6P?[UIFont systemFontOfSize:(x+1)]:[UIFont systemFontOfSize:(x)]
+
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 

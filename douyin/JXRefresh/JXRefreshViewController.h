@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
     XDREFRESH_BeginRefresh,    //刷新状态
 };
 #define MaxDistance 60 //向下拖拽最大点-刷新临界值
-#define MaxScroll 100 //向上拖拽最大点-到达最大点就动画让tableview滚动到第二个cell
+#define MaxScroll 200 //向上拖拽最大点-到达最大点就动画让tableview滚动到第二个cell
 @interface JXRefreshViewController : UIViewController
 //记录手指滑动状态
 @property (nonatomic, assign)StatusOfRefresh refreshStatus;
@@ -30,4 +30,5 @@ typedef NS_ENUM(NSInteger,StatusOfRefresh) {
  */
 -(void)addJXRefreshWithTableView:(UIScrollView *)scrollView andNavView:(UIView *)navView andRefreshBlock:(void (^)(void))block;
 -(void)endRefresh;
+-(void)tapView;
 @end
