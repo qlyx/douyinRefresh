@@ -10,6 +10,6 @@
 
 @interface VideoTableViewCell : UITableViewCell
 @property (nonatomic, strong) UIImageView *videoImage;
-@property(nonatomic, strong)NSIndexPath *indexPath;
 @property(nonatomic, strong)UIButton *playButton;
+-(void)setData:(NSString *)str andIndexPath:(NSIndexPath *)indexPath;
 @end

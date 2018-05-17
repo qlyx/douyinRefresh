@@ -19,6 +19,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMedia/CoreMedia.h>
+
+#import "MJRefresh.h"
+
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource, JPTableViewPlayVideoDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     int playIndex;
@@ -26,7 +29,6 @@
 @property (nonatomic, strong)MainViewNavigitionView *mainViewNavigitionView;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)UIButton *addVideo;
-
 @property (nonatomic, strong) NSMutableArray<NSString *> *pathStrings;
 
 @end
@@ -42,6 +44,12 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf endRefresh];
         });
+    }];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf getMoreData];
+        });
+        
     }];
     
     _addVideo = [JXUIKit buttonWithBackgroundColor:[UIColor redColor] titleColorForNormal:[UIColor whiteColor] titleForNormal:@"拍摄" titleForSelete:@"拍摄" titleColorForSelete:[UIColor whiteColor] fontSize:0 font:kFont(14)];
@@ -62,12 +70,9 @@
     }
 }
 
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
     CGRect tableViewFrame = self.tableView.frame;
-    
     self.tableView.jp_tableViewVisibleFrame = tableViewFrame;
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -87,10 +92,10 @@
     [super viewDidAppear:animated];
     [self.tableView jp_handleCellUnreachableTypeInVisibleCellsAfterReloadData];
     [self.tableView jp_playVideoInVisibleCellsIfNeed];
-
-
+    
     // 用来防止选中 cell push 到下个控制器时, tableView 再次调用 scrollViewDidScroll 方法, 造成 playingVideoCell 被置空.
-     self.tableView.delegate = self;
+    self.tableView.delegate = self;
+    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -118,7 +123,6 @@
         //设置最长摄像时间
         [controller setVideoMaximumDuration:60.f];
         
-        
         [controller setAllowsEditing:YES];// 设置是否可以管理已经存在的图片或者视频
         [controller setDelegate:self];// 设置代理
         [self presentViewController:controller animated:YES completion:nil];
@@ -134,11 +138,12 @@
     [self playButtonDidClick:cell.playButton];
 }
 - (void)playButtonDidClick:(UIButton *)button {
-    button.selected = !button.selected;
+    
     VideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
     BOOL isPlay = cell.videoImage.jp_playerStatus == JPVideoPlayerStatusBuffering ||
     cell.videoImage.jp_playerStatus == JPVideoPlayerStatusPlaying;
     isPlay ? [cell.videoImage jp_pause] : [cell.videoImage jp_resume];
+    button.selected = isPlay;
 }
 #pragma mark - Data Srouce
 
@@ -153,31 +158,16 @@
     
     if (!cell) {
         cell = [[VideoTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+        tableView.rowHeight = kHeight;
     }
-    cell.indexPath = indexPath;
-    cell.playButton.selected = NO;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.jp_videoURL = [NSURL URLWithString:self.pathStrings[indexPath.row]];
-    NSLog(@"%@",cell.jp_videoURL);
-    cell.jp_videoPlayView = cell.videoImage;
-    
-    [tableView jp_handleCellUnreachableTypeForCell:cell
-                                       atIndexPath:indexPath];
-    
-    tableView.rowHeight = kHeight;
-    cell.playButton.tag = indexPath.row;
-    [cell.playButton addTarget:self action:@selector(playButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    if (indexPath.row<self.pathStrings.count) {
+        [cell setData:self.pathStrings[indexPath.row] andIndexPath:indexPath];
+        [tableView jp_handleCellUnreachableTypeForCell:cell
+                                           atIndexPath:indexPath];
+        [cell.playButton addTarget:self action:@selector(playButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
     return cell;
 }
-
-
-#pragma mark - TableView Delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
-
 /**
  * Called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
  * 松手时已经静止, 只会调用scrollViewDidEndDragging
@@ -196,6 +186,18 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.tableView jp_scrollViewDidScroll];
+    int index= (int)self.tableView.contentOffset.y/kHeight;
+    float scroll = self.tableView.contentOffset.y- index*kHeight;
+    
+    if (scroll>0) {
+        //上滑
+        if (playIndex==self.pathStrings.count-1&&scroll>44) {
+            //进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
+            self.tableView.pagingEnabled = NO;
+            //往上偏移点，将footer展示出来
+            [self.tableView setContentOffset:CGPointMake(0, index*kHeight+45) animated:NO];
+        }
+    }
 }
 
 
@@ -205,20 +207,36 @@
     VideoTableViewCell *Cell = (VideoTableViewCell *)cell;
     Cell.playButton.selected = NO;
     playIndex = (int)Cell.playButton.tag;
+    if (Cell.playButton.tag==self.pathStrings.count-1) {
+        self.tableView.bounces = YES;
+    }else
+        self.tableView.bounces = NO;
     [cell.jp_videoPlayView jp_resumeMutePlayWithURL:cell.jp_videoURL
                                  bufferingIndicator:nil
                                        progressView:nil
                             configurationCompletion:^(UIView * _Nonnull view, JPVideoPlayerModel * _Nonnull playerModel) {
                                 view.jp_muted = NO;
                             }];
-    
-//    [cell.jp_videoPlayView jp_playVideoWithURL:cell.jp_videoURL options:JPVideoPlayerContinueInBackground |
-//     JPVideoPlayerLayerVideoGravityResizeAspectFill |
-//     JPVideoPlayerMutedPlay configurationCompletion:^(UIView * _Nonnull view, JPVideoPlayerModel * _Nonnull playerModel) {
-//        view.jp_muted = NO;
-//    }];
 }
 
+-(void)getMoreData
+{
+    [self.tableView.mj_footer endRefreshing];
+    int index = (int)self.pathStrings.count;
+    [self.pathStrings addObjectsFromArray:@[@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"]];
+    [self.tableView reloadData];
+    //滚动到下一个cell
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    NSLog(@"1w:%.f",self.tableView.contentOffset.y);
+    //mjfooter高度是44，上拉加载时页面会向上偏移44像素，数据加载完毕后需要将contentOffset复位
+    self.tableView.contentOffset =CGPointMake(0, self.tableView.contentOffset.y-44);
+    NSLog(@"1w:%.f",self.tableView.contentOffset.y);
+    //让cell开始播放
+    VideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    [self tableView:self.tableView willPlayVideoOnCell:cell];
+    //刷新结束，开启翻页功能
+    self.tableView.pagingEnabled = YES;
+}
 #pragma mark - 摄像头和相册相关的公共类
 
 // 判断设备是否有摄像头
@@ -290,45 +308,20 @@
         ChoseCoverViewController *vc = [[ChoseCoverViewController alloc] init];
         vc.videoPath = url;
         [self.navigationController pushViewController:vc animated:YES];
-        
         [self dismissViewControllerAnimated:NO completion:nil];
     }
-    
-    
 }
 
 - (void)setup{
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.jp_delegate = self;
-    
     // location file in disk.
     // 本地视频播放.
-    
     self.pathStrings = [[NSMutableArray alloc] initWithArray:@[
-                         @"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/child.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/english.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/erha.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/face.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/fanglian.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/gao.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/girlfriend.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/haha.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/hide.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/juzi.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/keai.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/nvpengy.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/samo.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/shagou.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/shagougou.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/shamiao.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/sichuan.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/tuolaiji.mp4",
-                         @"http://p11s9kqxf.bkt.clouddn.com/xiaobiaozi.mp4"
-                         ]];
+                                                               @"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",
+                                                               @"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"
+                                                               ,@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"]];
     [self.tableView reloadData];
 }
 -(MainViewNavigitionView *)mainViewNavigitionView
@@ -345,12 +338,10 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, kWidth, kHeight) style:UITableViewStylePlain];
         //适配ios11自适应上导航 安全区域20像素
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
         _tableView.sectionHeaderHeight = 0.01;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
     }
-    
     return _tableView;
 }
 - (void)didReceiveMemoryWarning {
@@ -360,3 +351,4 @@
 
 
 @end
+
