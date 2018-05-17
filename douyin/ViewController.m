@@ -188,7 +188,6 @@
     [self.tableView jp_scrollViewDidScroll];
     int index= (int)self.tableView.contentOffset.y/kHeight;
     float scroll = self.tableView.contentOffset.y- index*kHeight;
-    
     if (scroll>0) {
         //上滑
         if (playIndex==self.pathStrings.count-1&&scroll>44) {
@@ -204,19 +203,22 @@
 #pragma mark - JPTableViewPlayVideoDelegate
 
 - (void)tableView:(UITableView *)tableView willPlayVideoOnCell:(UITableViewCell *)cell {
+    
     VideoTableViewCell *Cell = (VideoTableViewCell *)cell;
     Cell.playButton.selected = NO;
     playIndex = (int)Cell.playButton.tag;
-    if (Cell.playButton.tag==self.pathStrings.count-1) {
-        self.tableView.bounces = YES;
-    }else
-        self.tableView.bounces = NO;
+    
     [cell.jp_videoPlayView jp_resumeMutePlayWithURL:cell.jp_videoURL
                                  bufferingIndicator:nil
                                        progressView:nil
                             configurationCompletion:^(UIView * _Nonnull view, JPVideoPlayerModel * _Nonnull playerModel) {
                                 view.jp_muted = NO;
                             }];
+    if (Cell.playButton.tag==self.pathStrings.count-1) {
+        //列表最后一个cell时开启
+        self.tableView.bounces = YES;
+    }else
+        self.tableView.bounces = NO;
 }
 
 -(void)getMoreData

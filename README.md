@@ -1,6 +1,67 @@
 # douyinRefresh
 记得star哦
+###补充：添加上拉加载
+一直觉得上拉加载只要集成mj的刷新控件就可以实现，就懒得弄进去，结果一试跟想象的差别有点大----果然任何事情都不能想当然啊
+核心代码如下，有注释（有兴趣的童鞋可以先不看下面代码，自己把mj哦你赶紧去看看会有什么问题，再来看代码就能理解了）
+//首先要处理bounces,因为一开始是关闭回弹效果的，但是要想有上拉加载就得有回弹，要不然到页面底部根本拉不动，所以要在合适的地方开启bounces
+```
+- (void)tableView:(UITableView *)tableView willPlayVideoOnCell:(UITableViewCell *)cell {
 
+VideoTableViewCell *Cell = (VideoTableViewCell *)cell;
+Cell.playButton.selected = NO;
+playIndex = (int)Cell.playButton.tag;
+
+[cell.jp_videoPlayView jp_resumeMutePlayWithURL:cell.jp_videoURL
+bufferingIndicator:nil
+progressView:nil
+configurationCompletion:^(UIView * _Nonnull view, JPVideoPlayerModel * _Nonnull playerModel) {
+view.jp_muted = NO;
+}];
+if (Cell.playButton.tag==self.pathStrings.count-1) {
+//列表最后一个cell时开启
+self.tableView.bounces = YES;
+}else
+self.tableView.bounces = NO;
+}
+```
+//监控滚动过程
+```
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.tableView jp_scrollViewDidScroll];
+    int index= (int)self.tableView.contentOffset.y/kHeight;
+    float scroll = self.tableView.contentOffset.y- index*kHeight;
+    if (scroll>0) {
+        //上滑
+        if (playIndex==self.pathStrings.count-1&&scroll>44) {
+        //进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
+        self.tableView.pagingEnabled = NO;
+        //往上偏移点，将footer展示出来
+        [self.tableView setContentOffset:CGPointMake(0, index*kHeight+45) animated:NO];
+        }
+    }
+}
+```
+//拿到数据后的处理方法，主要是reloadData后面的代码
+```
+-(void)getMoreData
+{
+[self.tableView.mj_footer endRefreshing];
+int index = (int)self.pathStrings.count;
+[self.pathStrings addObjectsFromArray:@[@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"]];
+[self.tableView reloadData];
+//滚动到下一个cell
+[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+NSLog(@"1w:%.f",self.tableView.contentOffset.y);
+//mjfooter高度是44，上拉加载时页面会向上偏移44像素，数据加载完毕后需要将contentOffset复位
+self.tableView.contentOffset =CGPointMake(0, self.tableView.contentOffset.y-44);
+NSLog(@"1w:%.f",self.tableView.contentOffset.y);
+//让cell开始播放
+VideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+[self tableView:self.tableView willPlayVideoOnCell:cell];
+//刷新结束，开启翻页功能
+self.tableView.pagingEnabled = YES;
+}
+```
 ![](https://github.com/qlyx/douyinRefresh/blob/master/demo.gif)
 
 既然是仿抖音效果，那首先就是要分析这个效果的实现思路，根据观察，实现思路大致如下（如果你有什么更好的方案也不妨告诉我哦，交流使人进步）：
