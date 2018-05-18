@@ -16,6 +16,10 @@
         self.items = [[NSMutableArray alloc] init];
         self.index = 1;//根据自己需求设置-看你们的分页是从0还是1开始
         self.updating = NO;
+        
+        self.estimatedRowHeight = 0;
+        self.estimatedSectionHeaderHeight = 0;
+        self.estimatedSectionFooterHeight = 0;
         //适配ios11自适应上导航 安全区域
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         SEL selector = NSSelectorFromString(@"setContentInsetAdjustmentBehavior:");

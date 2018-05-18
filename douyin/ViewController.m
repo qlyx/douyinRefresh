@@ -90,7 +90,7 @@
             [weakSelf endRefresh];
         });
     }];
-   
+    
     [self addVideoButton];
     
     self.tableView.dataSource = self;
@@ -163,7 +163,7 @@
         //下拉刷新-我设置的分页从1开始
     }else{
         //>1上拉加载
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             _tableView.updating = NO;
             [_tableView.mj_footer endRefreshing];
             int index = (int)_tableView.items.count;
@@ -181,7 +181,7 @@
             //刷新结束，开启翻页功能
             _tableView.pagingEnabled = YES;
         });
-    
+        
     }
 }
 #pragma mark - Data Srouce
@@ -248,26 +248,24 @@
     int index= (int)self.tableView.contentOffset.y/kHeight;
     //scroll是与整屏相比的偏移量，肯定是正的
     float scroll = self.tableView.contentOffset.y- index*kHeight;
-    NSLog(@"144w:%.f",self.tableView.contentOffset.y);
     //与上一个滑动点比较，区分上滑还是下滑
     float offset = self.tableView.contentOffset.y- oldOffset.y;
     //记录当前tableView.contentOffset
     oldOffset = self.tableView.contentOffset;
     if (offset>0) {
-        
-            //上滑
-            if (playIndex==_tableView.items.count-1&&scroll>44) {
-                if (_tableView.updating==NO) {
-                    //判断是否正在刷新，正在刷新就不再进行如下设置，以免重复加载
-                    _tableView.updating = YES;
-                    //进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
-                    self.tableView.pagingEnabled = NO;
-                    //往上偏移点，将footer展示出来，要大于44才会触发footer
-                    [self.tableView setContentOffset:CGPointMake(0, index*kHeight+50) animated:NO];
-                    [self.tableView.mj_footer beginRefreshing];
-                }
-                
+        //上拉-44是mj_footer的高度，当拖拽超过44的时候会触发mj
+        if (playIndex==_tableView.items.count-1&&scroll>44) {
+            if (_tableView.updating==NO) {
+                //判断是否正在刷新，正在刷新就不再进行如下设置，以免重复加载
+                _tableView.updating = YES;
+                //进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
+                self.tableView.pagingEnabled = NO;
+                //给tableView设置一个固定的Offset，往上偏移点，将footer展示出来，要大于44才会触发footer
+                [self.tableView setContentOffset:CGPointMake(0, index*kHeight+50) animated:NO];
+                [self.tableView.mj_footer beginRefreshing];
             }
+            
+        }
     }
     else if (offset<0)
     {
@@ -361,9 +359,6 @@
 {
     if (!_tableView) {
         _tableView = [[JXTableView alloc]initWithFrame:CGRectMake(0, 0, kWidth, kHeight) style:UITableViewStylePlain];
-        
-        _tableView.estimatedRowHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0;
         [_tableView addMJ];
     }
     return _tableView;
