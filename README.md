@@ -17,34 +17,56 @@ progressView:nil
 configurationCompletion:^(UIView * _Nonnull view, JPVideoPlayerModel * _Nonnull playerModel) {
 view.jp_muted = NO;
 }];
-if (Cell.playButton.tag==self.pathStrings.count-1) {
-//列表最后一个cell时开启
-self.tableView.bounces = YES;
-}else
+if (Cell.playButton.tag==0) {
+//列表第一个cell时关闭
 self.tableView.bounces = NO;
+}else
+self.tableView.bounces = YES;
 }
 ```
 //监控滚动过程
 ```
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.tableView jp_scrollViewDidScroll];
-    int index= (int)self.tableView.contentOffset.y/kHeight;
-    float scroll = self.tableView.contentOffset.y- index*kHeight;
-    if (scroll>0) {
-        //上滑
-        if (playIndex==self.pathStrings.count-1&&scroll>44) {
-        //进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
-        self.tableView.pagingEnabled = NO;
-        //往上偏移点，将footer展示出来
-        [self.tableView setContentOffset:CGPointMake(0, index*kHeight+45) animated:NO];
-        }
-    }
+[self.tableView jp_scrollViewDidScroll];
+int index= (int)self.tableView.contentOffset.y/kHeight;
+//scroll是与整屏相比的偏移量，肯定是正的
+float scroll = self.tableView.contentOffset.y- index*kHeight;
+NSLog(@"144w:%.f",self.tableView.contentOffset.y);
+//与上一个滑动点比较，区分上滑还是下滑
+float offset = self.tableView.contentOffset.y- oldOffset.y;
+//记录当前tableView.contentOffset
+oldOffset = self.tableView.contentOffset;
+if (offset>0) {
+
+//上滑
+if (playIndex==_tableView.items.count-1&&scroll>44) {
+if (_tableView.updating==NO) {
+//判断是否正在刷新，正在刷新就不再进行如下设置，以免重复加载
+_tableView.updating = YES;
+//进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
+self.tableView.pagingEnabled = NO;
+//往上偏移点，将footer展示出来，要大于44才会触发footer
+[self.tableView setContentOffset:CGPointMake(0, index*kHeight+50) animated:NO];
+[self.tableView.mj_footer beginRefreshing];
+}
+
+}
+}
+else if (offset<0)
+{
+if (_tableView.updating==YES) {
+//如果用户上拉加载时，又进行下滑操作，就要打开翻页功能（可能加载时间长用户不想等又往上翻之前的cell）-这种情况少见但不排除，不做此操作的话，将请求延时十秒就会看到区别，但一旦用户有这种操作就会有闪屏问题，即用户在第10个cell上拉加载了，然后又下滑倒第5个cell，当拿到返回数据之后页面会从5自动滚动到第11个cell，造成闪屏，但在3G网络下经测试抖音也是这样，故就这样吧
+self.tableView.pagingEnabled = YES;
+}
+
+}
 }
 ```
 //拿到数据后的处理方法，主要是reloadData后面的代码
 ```
 -(void)getMoreData
 {
+_isUpdating = NO;
 [self.tableView.mj_footer endRefreshing];
 int index = (int)self.pathStrings.count;
 [self.pathStrings addObjectsFromArray:@[@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"]];

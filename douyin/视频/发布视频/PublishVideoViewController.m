@@ -109,7 +109,8 @@
 
 -(void)tap
 {
-    [Tool downKeyBoardViolence];
+    [[UIApplication sharedApplication]sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil]
+    ;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

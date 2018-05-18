@@ -12,7 +12,6 @@
 		7B473C0120886E1200F0B8BE /* CoverImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0020886E1200F0B8BE /* CoverImageCollectionViewCell.m */; };
 		7B473C062088824D00F0B8BE /* PublishVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C052088824D00F0B8BE /* PublishVideoViewController.m */; };
 		7B473C0A208882D000F0B8BE /* JXCustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C09208882D000F0B8BE /* JXCustomTextView.m */; };
-		7B473C0D208884D200F0B8BE /* Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0C208884D200F0B8BE /* Tool.m */; };
 		7B473C102088A6BA00F0B8BE /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0F2088A6BA00F0B8BE /* VideoView.m */; };
 		7B4938CB20AC34D500E40FED /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7B49389A20AC34D500E40FED /* LICENSE */; };
 		7B4938CC20AC34D500E40FED /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B49389E20AC34D500E40FED /* MJRefreshAutoFooter.m */; };
@@ -50,6 +49,7 @@
 		7B54BA8A207F04F000370B91 /* MainViewNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA89207F04F000370B91 /* MainViewNavigitionView.m */; };
 		7B54BA8D207F050000370B91 /* RefreshNavigitionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA8C207F050000370B91 /* RefreshNavigitionView.m */; };
 		7B54BA90207F067800370B91 /* JXUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B54BA8F207F067800370B91 /* JXUIKit.m */; };
+		7BB2FE1B20AEB76B0046BD60 /* JXTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB2FE1A20AEB76B0046BD60 /* JXTableView.m */; };
 		7BB35E3B2086E3C6004965A8 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E3A2086E3C6004965A8 /* VideoTableViewCell.m */; };
 		7BB35E5B2086EBF1004965A8 /* JPResourceLoadingRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E3E2086EBF1004965A8 /* JPResourceLoadingRequestTask.m */; };
 		7BB35E5C2086EBF1004965A8 /* JPVideoPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7BB35E3F2086EBF1004965A8 /* JPVideoPlayer.bundle */; };
@@ -98,8 +98,6 @@
 		7B473C052088824D00F0B8BE /* PublishVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishVideoViewController.m; sourceTree = "<group>"; };
 		7B473C08208882CF00F0B8BE /* JXCustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCustomTextView.h; sourceTree = "<group>"; };
 		7B473C09208882D000F0B8BE /* JXCustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCustomTextView.m; sourceTree = "<group>"; };
-		7B473C0B208884D200F0B8BE /* Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tool.h; sourceTree = "<group>"; };
-		7B473C0C208884D200F0B8BE /* Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tool.m; sourceTree = "<group>"; };
 		7B473C0E2088A6BA00F0B8BE /* VideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
 		7B473C0F2088A6BA00F0B8BE /* VideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
 		7B49389A20AC34D500E40FED /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -171,6 +169,8 @@
 		7B54BA8E207F067800370B91 /* JXUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXUIKit.h; sourceTree = "<group>"; };
 		7B54BA8F207F067800370B91 /* JXUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXUIKit.m; sourceTree = "<group>"; };
 		7B54BAF6207F2E8E00370B91 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		7BB2FE1920AEB76B0046BD60 /* JXTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXTableView.h; sourceTree = "<group>"; };
+		7BB2FE1A20AEB76B0046BD60 /* JXTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXTableView.m; sourceTree = "<group>"; };
 		7BB35E392086E3C6004965A8 /* VideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
 		7BB35E3A2086E3C6004965A8 /* VideoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewCell.m; sourceTree = "<group>"; };
 		7BB35E3D2086EBF1004965A8 /* JPResourceLoadingRequestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPResourceLoadingRequestTask.h; sourceTree = "<group>"; };
@@ -479,8 +479,8 @@
 			children = (
 				7B54BA8E207F067800370B91 /* JXUIKit.h */,
 				7B54BA8F207F067800370B91 /* JXUIKit.m */,
-				7B473C0B208884D200F0B8BE /* Tool.h */,
-				7B473C0C208884D200F0B8BE /* Tool.m */,
+				7BB2FE1920AEB76B0046BD60 /* JXTableView.h */,
+				7BB2FE1A20AEB76B0046BD60 /* JXTableView.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -751,6 +751,7 @@
 				7B4938D020AC34D500E40FED /* MJRefreshHeader.m in Sources */,
 				7B54BA8D207F050000370B91 /* RefreshNavigitionView.m in Sources */,
 				7B4938CC20AC34D500E40FED /* MJRefreshAutoFooter.m in Sources */,
+				7BB2FE1B20AEB76B0046BD60 /* JXTableView.m in Sources */,
 				7B473C0A208882D000F0B8BE /* JXCustomTextView.m in Sources */,
 				7BB35E692086EBF1004965A8 /* UIView+WebVideoCache.m in Sources */,
 				7BB35E3B2086E3C6004965A8 /* VideoTableViewCell.m in Sources */,
@@ -777,7 +778,6 @@
 				7B54BA8A207F04F000370B91 /* MainViewNavigitionView.m in Sources */,
 				7B4C3C2B20807E20000C56EF /* JXRefreshViewController.m in Sources */,
 				7B4938D620AC34D500E40FED /* MJRefreshBackStateFooter.m in Sources */,
-				7B473C0D208884D200F0B8BE /* Tool.m in Sources */,
 				7BB35E642086EBF1004965A8 /* JPVideoPlayerManager.m in Sources */,
 				7B54BA58207EF23700370B91 /* AppDelegate.m in Sources */,
 			);
