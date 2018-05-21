@@ -1,8 +1,12 @@
 # douyinRefresh
 记得star哦
-###补充：添加上拉加载
-一直觉得上拉加载只要集成mj的刷新控件就可以实现，就懒得弄进去，结果一试跟想象的差别有点大----果然任何事情都不能想当然啊
-核心代码如下，有注释（有兴趣的童鞋可以先不看下面代码，自己把mj哦你赶紧去看看会有什么问题，再来看代码就能理解了）
+
+##添加上拉加载
+![](https://github.com/qlyx/douyinRefresh/blob/master/footerRefresh.gif)
+
+具体添加过程请看简书：[OC-抖音上拉加载（你以为单纯用MJRefresh就能实现？那你就错了）](https://www.jianshu.com/p/313d56c2854b)
+
+核心代码如下，有注释（有兴趣的童鞋可以先不看下面代码，自己把mj集成进去看看会有什么问题，再来看代码就能理解了）
 //首先要处理bounces,因为一开始是关闭回弹效果的，但是要想有上拉加载就得有回弹，要不然到页面底部根本拉不动，所以要在合适的地方开启bounces
 ```
 - (void)tableView:(UITableView *)tableView willPlayVideoOnCell:(UITableViewCell *)cell {
@@ -88,47 +92,7 @@ self.tableView.pagingEnabled = YES;
 ##下面是下拉刷新的说明
 ![](https://github.com/qlyx/douyinRefresh/blob/master/demo.gif)
 
-既然是仿抖音效果，那首先就是要分析这个效果的实现思路，根据观察，实现思路大致如下（如果你有什么更好的方案也不妨告诉我哦，交流使人进步）：
-1、上拉时页面有翻页效果，可以用scrollview的pagingEnabled来实现，也就是说列表页不管你用tableview还是collectionview，只要每个cell是全屏的就可以
-2、下拉：当页面不是停留在第一个cell时，下拉就只是scrollView的滚动效果，不会触发刷新，当页面停留在第一个cell，也就是说scrollView.contentOffset.y = 0的时候，手指下拉才会触发刷新效果，并且下拉时scrollView不动，也就是没有scrollview的弹性效果，因此scrollView.bounces = NO
-3、既然下拉时scrollView不动，就不能使用代理来监听scrollView的滑动实现刷新，于是我想到了用touches的系列方法来监控手指下滑位移;
-4、动画分解有五步：
-（1）下拉时“推荐、附近”的那个导航条和“下拉刷新内容”的视图有渐隐渐显的效果，位置也随着手指下移，可以通过手指下滑位移计算alpha来实现
-（2）下拉时，“下拉刷新内容”的视图右边那个有缺口的小圆环会随着手指滑动转圈，下滑时逆时针旋转
-（3）下滑一定距离后如果不松手，又继续上滑，会执行前两步的反效果，圆环顺时针旋转，手指停在屏幕上，圆环就停止转动
-（4）下滑到某个临界点，导航条和刷新视图都不再移动（此时导航条已经完全透明），所以可以通过计算起始点和当前点移动距离来计算透明度、位移、旋转角度，这些操作都在touchesMoved中实现
-（5）到临界点松手后，导航条和刷新视图都回到原始位置，小圆环一直顺时针转圈，直到刷新结束，停止动画，隐藏刷新视图，显示导航条，如果没达到临界点就松手，不会触发刷新
-
->描述的有点多，但是只有仔细分析了才能有个清晰的思路，实现的时候也就会少走一些弯路。写代码最忌拿到功能还没想好就开始干，结果实现的时候遇到太多的坑，反反复复浪费时间。
-
-好了，思路整理了之后那么就一步步实现吧
-#####一、基础功能
-创建tableview、mainViewNavigitionView（导航条）、RefreshNavigitionView（刷新视图，初始alpha为0）、startPoint（起始触摸点），基本样式都写完之后就开始运行了
-![](https://github.com/qlyx/douyinRefresh/blob/master/img1.jpeg)
-
-运行起来大面上一看，嗯，长得还挺像的，上拉翻页也没问题，但是，重点来了：
-######我手指下滑的时候touchesBegan等系列方法根本就没走，what?这怎么办，说好的监听手指移动距离的，方法都不走我怎么监听？
-经过一番搜索查证，原来是事件响应链的问题，当我们点击屏幕时，第一响应者应该是UITableView，而我们调用的touchBegan其实是ViewController的View的方法，所以无法被调用，如果不了解的话下面两篇文章可以帮到你：
-[从iOS的事件响应链看TableView为什么不响应touchesBegan](https://www.jianshu.com/p/d77164f8cac5)
-[让UITableView响应touch事件](https://blog.csdn.net/aaidong/article/details/45914435)
-根据文中方法，我给TableView写了个基类，添加了touches相关的一些代理方法，运行起来，终于可以监听手指移动了
-######但是，问题又来了，我在touchesMoved打印了手指触摸点的y值，我发现手指滑动一会儿后控制台就不再打印了，每次位移大概十几个像素，并且松手后touchesEnded方法也不怎么走（这个方法不太灵光啊）
-
-于是我把TableView先注掉，让手指直接触摸在self.view上，看看touches方法是否正常，事实证明是没问题的
-
-######把tableView解开依然不好使（不好使的原因我还没有深究，如果有人知道，不妨告诉我啦，谢谢），既然手指直接摸在self.view上是好使的，而且touchBegan其实是ViewController的View的方法，那我是不是可以在tableView上面覆盖一层透明的view，通过滑动判断来隐藏和显示它，实现下拉刷新，上拉翻页（上拉时隐藏view，手指就摸在tableView上，就是拖拽手势了）
-#####二、动画效果
-根据上面的想法，初步实现了手指触摸的系列操作，但是还有许多细节需要注意，就是clearview的隐藏和显示的临界点，思路如下：
-1、页面初始，clearview显示，但背景色是透明的，用户看不到，判断手指滑动位移，如果是下拉，就执行下拉刷新的那些操作，以及动画，如果是上拉，上拉到某个临界点，就翻页，并且隐藏clearview，这样用户下次下拉的时候就不会触发touch的方法，而是tableView的向下拖拽翻页
-2、监听tableView的滑动，如果滑动到第一个cell停止了，就要让clearview显示，有可能用户会继续下滑，就会触发touch的方法，执行1的操作
-3、触摸结束时，需要恢复导航条和刷新视图的frame,如果此时RefreshNavigitionView的alpha不为1，说明没有下拉到临界点，各自透明度也要恢复到初始状态，如果是1，就要走刷新的回调
-
-######到这里基本上上拉下拉的操作都可以顺畅完成了，接下来就该实现动画了，frame的移动，以及松手后圆环一直转圈这些都好做，困住我的是手指下拉时圆环随着手指下滑位移旋转，也就是说它既要随着父视图RefreshNavigitionView下移，还要以自己为中心旋转，手指滑动它就转，手指不动它就不转
-
-旋转动画我选的是transform，松手后圆环旋转用的是CABasicAnimation，但它是layer动画，动画结束后会复位，实际上view本身没有转动，使用过程中就会出现圆环转一下回去又转一下又回去的卡顿现象（当然也可以用代码让它不要复位：[CABasicAnimation使用总结](https://www.jianshu.com/p/02c341c748f9)比较麻烦，代码也比transform多，transform只需一行代码即可旋转）
-transform是叠加效果，可以根据上次旋转的角度继续旋转，如果我把度数写成固定值，那么圆环就会随着手指移动均匀旋转，动画也比较流畅
-
->理想很丰满，现实很残酷呀。transform动画写上之后，圆环居然随着手指移动乱转，一会放大，一会缩小，一会翻转，网上查了各种transform的使用方法，我写的没问题啊，着实困了我不少时间，只好求助小伙伴了。经查证是自动布局的锅，transform是frame动画，需要圆环确切的frame,而我用的是SDAutolayout，就算updatelayout也不好使，小圆环的位置如果改成frame，动画就没问题了，然后又试了masonry,也是好使的，所以说有时候老框架的优势还是很明显的
+具体过程参照简书[OC-仿抖音下拉刷新](https://www.jianshu.com/p/b68813c540c6)
 
 核心代码如下,注释写的很清楚：
 ```
@@ -263,6 +227,6 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), di
 
 ![](https://github.com/qlyx/douyinRefresh/blob/master/erweima.png)
 
-谢谢打赏，使用时如有问题可扫下方二维码加我哦
+使用时如有问题可扫下方二维码加我哦
 
 ![](https://github.com/qlyx/douyinRefresh/blob/master/jiawo.jpg)
