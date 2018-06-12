@@ -31,7 +31,7 @@
 	<string>获取相机权限</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>获取麦克风权限</string>
-	<key>NSPhotoLibraryAddUsageDescription - 2</key>
+	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>是否允许此APP保存图片？</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许此App访问您的相册？</string>

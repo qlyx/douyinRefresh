@@ -28,7 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
 }
 -(void)addJXRefreshWithTableView:(UIScrollView *)scrollView andNavView:(UIView *)navView andRefreshBlock:(void (^)(void))block
 {
@@ -66,7 +65,6 @@
     }
 }
 #pragma mark - touch
-
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
      NSLog(@"%@",NSStringFromClass([self.scrollView  class]));
@@ -81,6 +79,7 @@
 }
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     if (CGPointEqualToPoint(startPoint,CGPointZero)) {
         //没记录到起始触摸点就返回
         return;
@@ -101,8 +100,6 @@
             _refreshNavigitionView.frame = frame;
             if (_mainViewNavigitionView) {
                 _mainViewNavigitionView.alpha = 1-alpha;
-//                frame = _mainViewNavigitionView.frame;
-//                frame.origin.y = moveDistance;
                 _mainViewNavigitionView.frame = frame;
             }
             //在整体判断为下拉刷新的情况下，还需要对上一个触摸点和当前触摸点进行比对，判断圆圈旋转方向，下移逆时针，上移顺时针
@@ -135,12 +132,11 @@
             //上拉距离超过MaxScroll，就让tableview滚动到第二个cell，模仿tableview翻页效果
             _clearView.hidden = YES;
             
-            
             [UIView animateWithDuration:0.3 animations:^{
                 self.scrollView.contentOffset = CGPointMake(0, kHeight);
             }];
             NSLog(@"%@",NSStringFromClass([self.scrollView  class]));
-            if ([NSStringFromClass([self.scrollView class]) isEqualToString:@"UITableView"]) {
+            if ([NSStringFromClass([self.scrollView superclass]) isEqualToString:@"UITableView"]) {
                 UITableView *tab = (UITableView *)self.scrollView;
                 VideoTableViewCell *cell = [tab cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
                 [cell.jp_videoPlayView jp_resumeMutePlayWithURL:cell.jp_videoURL
@@ -183,16 +179,14 @@
             self.scrollView.contentOffset = CGPointMake(0, 0);
         }
     }];
-    
     //_refreshNavigitionView.alpha=1的时候说明用户拖拽到最大点，可以开始刷新页面
     if (_refreshNavigitionView.alpha == 1) {
         self.refreshStatus = XDREFRESH_BeginRefresh;
         //刷新图片
-        [self startAnimation];
+        [self.refreshNavigitionView startAnimation];
         if (self.refreshBlock) {
             self.refreshBlock();
         }
-       
     }else
     {
         //没下拉到最大点，alpha复原
@@ -210,27 +204,13 @@
         }
     }];
 }
--(void)startAnimation
-{
-    //要先将transform复位-因为CABasicAnimation动画执行完毕后会自动复位，就是没有执行transform之前的位置，跟transform之后的位置有角度差，会造成视觉上旋转不流畅
-    _refreshNavigitionView.circleImage.transform = CGAffineTransformIdentity;
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0];
-    rotationAnimation.duration = 0.5;
-    rotationAnimation.cumulative = YES;
-    //重复旋转的次数，如果你想要无数次，那么设置成MAXFLOAT
-    rotationAnimation.repeatCount = MAXFLOAT;
-    [_refreshNavigitionView.circleImage.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-}
+
 -(void)endRefresh
 {
     [self resumeNormal];
     [_refreshNavigitionView.circleImage.layer removeAnimationForKey:@"rotationAnimation"];
     _clearView.hidden = NO;
 }
-
-
 -(RefreshNavigitionView *)refreshNavigitionView
 {
     if (!_refreshNavigitionView) {
@@ -248,7 +228,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 @end
 

@@ -10,4 +10,5 @@
 
 @interface RefreshNavigitionView : UIView
 @property(nonatomic, strong)UIImageView *circleImage;
+-(void)startAnimation;
 @end

@@ -99,7 +99,7 @@
     self.tableView.refreshDelegete = self;
     // location file in disk.
     // 本地视频播放.
-    [self.tableView.items addObjectsFromArray: @[ @"http://p11s9kqxf.bkt.clouddn.com/coder.mp4", @"http://p11s9kqxf.bkt.clouddn.com/cat.mp4" ,@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"]];
+    [self.tableView.items addObjectsFromArray: @[ @"http://video.youji.pro/94c60ea4aa3e4c39baf3e4f1bf05369f/9d2acce89dc049da96d51eebfd85e49c-fb7c29a19e1dea4090f7127ce589aa56-ld.mp4",@"http://video.youji.pro/ddfcd4da90914882ae4cc54944b06fbe/f6bd92d685694870a01e9b837a774672-04e2b7da07bfa70385c150870ee334e8-ld.mp4",@"http://video.youji.pro/8faa3eb5248e442380fdb082674e5ce1/1f5e0f0a5d324cf59158c7cf03d01a33-c1e9d3edacaf54958a942a28315a67ee-ld.mp4"]];
     [self.tableView reloadData];
 }
 -(void)addVideoButton
@@ -167,7 +167,7 @@
             _tableView.updating = NO;
             [_tableView.mj_footer endRefreshing];
             int index = (int)_tableView.items.count;
-            [_tableView.items addObjectsFromArray:@[@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"]];
+            [_tableView.items addObjectsFromArray:@[@"http://video.youji.pro/94c60ea4aa3e4c39baf3e4f1bf05369f/9d2acce89dc049da96d51eebfd85e49c-fb7c29a19e1dea4090f7127ce589aa56-ld.mp4",@"http://video.youji.pro/ddfcd4da90914882ae4cc54944b06fbe/f6bd92d685694870a01e9b837a774672-04e2b7da07bfa70385c150870ee334e8-ld.mp4",@"http://video.youji.pro/8faa3eb5248e442380fdb082674e5ce1/1f5e0f0a5d324cf59158c7cf03d01a33-c1e9d3edacaf54958a942a28315a67ee-ld.mp4"]];
             [_tableView reloadData];
             //滚动到下一个cell
             [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
@@ -338,14 +338,12 @@
         NSError *error;
         [fileManger copyItemAtURL:mediaUrl toURL:url error:&error];
         
-        
         ChoseCoverViewController *vc = [[ChoseCoverViewController alloc] init];
         vc.videoPath = url;
         [self.navigationController pushViewController:vc animated:YES];
         [self dismissViewControllerAnimated:NO completion:nil];
     }
 }
-
 
 -(MainViewNavigitionView *)mainViewNavigitionView
 {
@@ -367,7 +365,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 @end
 
