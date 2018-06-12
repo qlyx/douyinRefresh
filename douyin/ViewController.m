@@ -166,19 +166,29 @@
         //>1上拉加载
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             _tableView.updating = NO;
-            [_tableView.mj_footer endRefreshing];
-            int index = (int)_tableView.items.count;
-            [_tableView.items addObjectsFromArray:@[@"http://video.youji.pro/94c60ea4aa3e4c39baf3e4f1bf05369f/9d2acce89dc049da96d51eebfd85e49c-fb7c29a19e1dea4090f7127ce589aa56-ld.mp4",@"http://video.youji.pro/ddfcd4da90914882ae4cc54944b06fbe/f6bd92d685694870a01e9b837a774672-04e2b7da07bfa70385c150870ee334e8-ld.mp4",@"http://video.youji.pro/8faa3eb5248e442380fdb082674e5ce1/1f5e0f0a5d324cf59158c7cf03d01a33-c1e9d3edacaf54958a942a28315a67ee-ld.mp4"]];
-            [_tableView reloadData];
-            //滚动到下一个cell
-            [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+            if (_tableView.items.count>8) {
+                //模拟数据加载完毕的操作
+                [_tableView.mj_footer endRefreshingWithNoMoreData];
+            }else{
+                [_tableView.mj_footer endRefreshing];
+                int index = (int)_tableView.items.count;
+                [_tableView.items addObjectsFromArray:@[@"http://video.youji.pro/94c60ea4aa3e4c39baf3e4f1bf05369f/9d2acce89dc049da96d51eebfd85e49c-fb7c29a19e1dea4090f7127ce589aa56-ld.mp4",@"http://video.youji.pro/ddfcd4da90914882ae4cc54944b06fbe/f6bd92d685694870a01e9b837a774672-04e2b7da07bfa70385c150870ee334e8-ld.mp4",@"http://video.youji.pro/8faa3eb5248e442380fdb082674e5ce1/1f5e0f0a5d324cf59158c7cf03d01a33-c1e9d3edacaf54958a942a28315a67ee-ld.mp4"]];
+                [_tableView reloadData];
+                //滚动到下一个cell
+                [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+                
+                //让cell开始播放
+                VideoTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                [self tableView:_tableView willPlayVideoOnCell:cell];
+                
+            }
             NSLog(@"1w:%.f",_tableView.contentOffset.y);
             //mjfooter高度是44，上拉加载时页面会向上偏移44像素，数据加载完毕后需要将contentOffset复位
-            _tableView.contentOffset =CGPointMake(0, _tableView.contentOffset.y-44);
+            if ((int)_tableView.contentOffset.y%(int)kHeight>40) {
+                _tableView.contentOffset =CGPointMake(0, _tableView.contentOffset.y-44);
+            }
+            
             NSLog(@"1w:%.f",_tableView.contentOffset.y);
-            //让cell开始播放
-            VideoTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-            [self tableView:_tableView willPlayVideoOnCell:cell];
             //刷新结束，开启翻页功能
             _tableView.pagingEnabled = YES;
         });
@@ -243,8 +253,20 @@
  */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     [self.tableView jp_scrollViewDidEndDecelerating];
+    
 }
-
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    //如果不想出现页面回弹后又突然弹上去露出footer的情况，可以在将要减速时用【setContentOffset，animated:NO】来立刻停止scr的滑动，但是这样会有点突兀，加个UIView的动画就好了
+    if (_tableView.updating) {
+        int index= (int)self.tableView.contentOffset.y/kHeight;
+        //给tableView设置一个固定的Offset，往上偏移点，将footer展示出来，要大于44才会触发footer
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.tableView setContentOffset:CGPointMake(0, index*kHeight+44) animated:NO];
+        }];
+        
+    }
+}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.tableView jp_scrollViewDidScroll];
     int index= (int)self.tableView.contentOffset.y/kHeight;
@@ -262,9 +284,9 @@
                 _tableView.updating = YES;
                 //进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
                 self.tableView.pagingEnabled = NO;
-                //给tableView设置一个固定的Offset，往上偏移点，将footer展示出来，要大于44才会触发footer
-                [self.tableView setContentOffset:CGPointMake(0, index*kHeight+50) animated:NO];
                 [self.tableView.mj_footer beginRefreshing];
+               
+                
             }
             
         }
