@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3EF69E20CF6C8000835FFC /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3EF69B20CF6C7F00835FFC /* 2.jpg */; };
+		7B3EF69F20CF6C8000835FFC /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3EF69C20CF6C7F00835FFC /* 1.jpg */; };
+		7B3EF6A020CF6C8000835FFC /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3EF69D20CF6C8000835FFC /* 3.jpg */; };
 		7B3F23B620AD1E5F005F566C /* bander.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3F23B520AD1E5E005F566C /* bander.jpg */; };
 		7B473BFE208864C200F0B8BE /* ChoseCoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473BFD208864C200F0B8BE /* ChoseCoverViewController.m */; };
 		7B473C0120886E1200F0B8BE /* CoverImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0020886E1200F0B8BE /* CoverImageCollectionViewCell.m */; };
@@ -89,6 +92,9 @@
 /* Begin PBXFileReference section */
 		274B0E5ED4AA4E2ECB9A5B27 /* libPods-douyin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-douyin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7974DB79142035537FCF0D3B /* Pods-douyin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-douyin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-douyin/Pods-douyin.debug.xcconfig"; sourceTree = "<group>"; };
+		7B3EF69B20CF6C7F00835FFC /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		7B3EF69C20CF6C7F00835FFC /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		7B3EF69D20CF6C8000835FFC /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		7B3F23B520AD1E5E005F566C /* bander.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bander.jpg; sourceTree = "<group>"; };
 		7B473BFC208864C200F0B8BE /* ChoseCoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoseCoverViewController.h; sourceTree = "<group>"; };
 		7B473BFD208864C200F0B8BE /* ChoseCoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoseCoverViewController.m; sourceTree = "<group>"; };
@@ -392,6 +398,9 @@
 		7B4C3C2C20809058000C56EF /* JXRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				7B3EF69B20CF6C7F00835FFC /* 2.jpg */,
+				7B3EF69C20CF6C7F00835FFC /* 1.jpg */,
+				7B3EF69D20CF6C8000835FFC /* 3.jpg */,
 				7B3F23B520AD1E5E005F566C /* bander.jpg */,
 				7B4C3C2E2080990F000C56EF /* circle@2x.png */,
 				7B4C3C2D2080990F000C56EF /* circle@3x.png */,
@@ -650,7 +659,10 @@
 			files = (
 				7B54BA63207EF23700370B91 /* LaunchScreen.storyboard in Resources */,
 				7B3F23B620AD1E5F005F566C /* bander.jpg in Resources */,
+				7B3EF69E20CF6C8000835FFC /* 2.jpg in Resources */,
+				7B3EF6A020CF6C8000835FFC /* 3.jpg in Resources */,
 				7B4C3C2F2080990F000C56EF /* circle@3x.png in Resources */,
+				7B3EF69F20CF6C8000835FFC /* 1.jpg in Resources */,
 				7B54BA60207EF23700370B91 /* Assets.xcassets in Resources */,
 				7B4938CB20AC34D500E40FED /* LICENSE in Resources */,
 				7B54BA5E207EF23700370B91 /* Main.storyboard in Resources */,

@@ -296,7 +296,7 @@
         if (self.jp_videoPlayerDelegate && [self.jp_videoPlayerDelegate respondsToSelector:@selector(shouldShowBlackBackgroundBeforePlaybackStart)]) {
             BOOL shouldShow = [self.jp_videoPlayerDelegate shouldShowBlackBackgroundBeforePlaybackStart];
             if(shouldShow){
-                self.helper.videoPlayerView.backgroundColor = [UIColor blackColor];
+                self.helper.videoPlayerView.backgroundColor = [UIColor clearColor];
             }
         }
 
@@ -397,7 +397,7 @@
 
     self.helper.viewInterfaceOrientation = JPVideoPlayViewInterfaceOrientationLandscape;
     JPVideoPlayerView *videoPlayerView = self.helper.videoPlayerView;
-    videoPlayerView.backgroundColor = [UIColor blackColor];
+    videoPlayerView.backgroundColor = [UIColor clearColor];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     // hide status bar.

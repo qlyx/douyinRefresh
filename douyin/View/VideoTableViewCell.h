@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface VideoTableViewCell : UITableViewCell
+#import "UIView+WebVideoCache.h"
+@interface VideoTableViewCell : UITableViewCell<JPVideoPlayerDelegate>
 @property (nonatomic, strong) UIImageView *videoImage;
 @property(nonatomic, strong)UIButton *playButton;
 -(void)setData:(NSString *)str andIndexPath:(NSIndexPath *)indexPath;

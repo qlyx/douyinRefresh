@@ -34,7 +34,7 @@
     if (![scrollView isKindOfClass:[UIScrollView class]]) {
         return;
     }
-   
+    
     self.refreshBlock = block;
     
     self.scrollView = scrollView;
@@ -67,7 +67,7 @@
 #pragma mark - touch
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-     NSLog(@"%@",NSStringFromClass([self.scrollView  class]));
+    NSLog(@"%@",NSStringFromClass([self.scrollView  class]));
     if (self.scrollView.contentOffset.y <=0&&self.refreshStatus == REFRESH_Normal) {
         //当tableview停在第一个cell并且是正常状态才记录起始触摸点，防止页面在刷新时用户再次向下拖拽页面造成多次下拉刷新
         startPoint = [touches.anyObject locationInView:self.view];
@@ -155,14 +155,13 @@
 - (void)touchesEnded:(NSSet *)touches
            withEvent:(UIEvent *)event
 {
-  
+    
     CGPoint currentPoint = [touches.anyObject locationInView:self.view];
     
     float moveDistance = currentPoint.y-startPoint.y;
     if (moveDistance==0) {
         //判断为轻点屏幕，手动调用一下cell上视频的播放/暂停按钮
         [self tapView];
-        
     }
     //清除起始触摸点
     startPoint = CGPointZero;

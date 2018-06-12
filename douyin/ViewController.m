@@ -1,3 +1,4 @@
+
 //
 //  ViewController.m
 //  douyin
@@ -77,7 +78,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     VideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:playIndex inSection:0]];
-    [cell.videoImage jp_stopPlay];
+    [cell.jp_videoPlayView jp_stopPlay];
     // 用来防止选中 cell push 到下个控制器时, tableView 再次调用 scrollViewDidScroll 方法, 造成 playingVideoCell 被置空.
     self.tableView.delegate = nil;
 }
@@ -151,9 +152,9 @@
 - (void)playButtonDidClick:(UIButton *)button {
     
     VideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
-    BOOL isPlay = cell.videoImage.jp_playerStatus == JPVideoPlayerStatusBuffering ||
-    cell.videoImage.jp_playerStatus == JPVideoPlayerStatusPlaying;
-    isPlay ? [cell.videoImage jp_pause] : [cell.videoImage jp_resume];
+    BOOL isPlay = cell.jp_videoPlayView.jp_playerStatus == JPVideoPlayerStatusBuffering ||
+    cell.jp_videoPlayView.jp_playerStatus == JPVideoPlayerStatusPlaying;
+    isPlay ? [cell.jp_videoPlayView jp_pause] : [cell.jp_videoPlayView jp_resume];
     button.selected = isPlay;
 }
 //获取更多
@@ -226,6 +227,7 @@
     }else
         self.tableView.bounces = YES;
 }
+
 #pragma mark - scroll
 /**
  * Called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
