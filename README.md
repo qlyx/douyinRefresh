@@ -90,6 +90,7 @@ self.tableView.pagingEnabled = YES;
 ```
 
 ##下面是下拉刷新的说明
+
 ![](https://github.com/qlyx/douyinRefresh/blob/master/demo.gif)
 
 具体过程参照简书[OC-仿抖音下拉刷新](https://www.jianshu.com/p/b68813c540c6)
@@ -107,6 +108,8 @@ NSLog(@"startPoint:%.f",startPoint.y);
 _clearView.hidden = YES;
 }
 }
+
+
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 if (CGPointEqualToPoint(startPoint,CGPointZero)) {
@@ -172,6 +175,8 @@ self.scrollView.contentOffset = CGPointMake(0, moveDistance);
 }
 }
 }
+
+
 - (void)touchesEnded:(NSSet *)touches
 withEvent:(UIEvent *)event
 {
@@ -222,10 +227,6 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), di
 ######注意点：使用时只需要初始化tableview 和mainViewNavigitionView就好，不要添加到self.view上
 
 代码质量和封装效果差点（我还是有自知之明的），肯定可以有更优的实现效果的，可以参照下思路呀，有问题及时反馈哈
-
-如果觉得对您有帮助请随意打赏一下吧^ _ ^，您的支持是我的无限动力，谢谢
-
-![](https://github.com/qlyx/douyinRefresh/blob/master/erweima.png)
 
 使用时如有问题可扫下方二维码加我哦
 
