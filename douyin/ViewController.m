@@ -279,7 +279,8 @@
     if (offset>0) {
         //上拉-44是mj_footer的高度，当拖拽超过44的时候会触发mj
         if (playIndex==_tableView.items.count-1&&scroll>44) {
-            if (_tableView.updating==NO) {
+            if (_tableView.updating==NO&&_tableView.mj_footer.state != MJRefreshStateNoMoreData) {
+                
                 //判断是否正在刷新，正在刷新就不再进行如下设置，以免重复加载
                 _tableView.updating = YES;
                 //进到这里说明用户正在上拉加载，触发mj,此时要关闭翻页功能否则页面回弹mj_footer就看不到了，setContentOffset也无效
