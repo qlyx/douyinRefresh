@@ -229,6 +229,7 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), di
 代码质量和封装效果差点（我还是有自知之明的），肯定可以有更优的实现效果的，可以参照下思路呀，有问题及时反馈哈
 
 如果觉得对您有帮助请随意打赏一下吧^ _ ^，您的支持是我的无限动力，谢谢
+
 ![](https://github.com/qlyx/douyinRefresh/blob/master/erweima.png)
 
 使用时如有问题可扫下方二维码加我哦
