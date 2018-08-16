@@ -231,11 +231,6 @@
     VideoTableViewCell *Cell = (VideoTableViewCell *)cell;
     Cell.playButton.selected = NO;
     playIndex = (int)Cell.playButton.tag;
-    //    [UIView animateWithDuration:0.25 animations:^{
-    //        Cell.videoImage.hidden = YES;
-    //    } completion:^(BOOL finished) {
-    //
-    //    }];
     [Cell.jp_videoPlayView jp_resumeMutePlayWithURL:cell.jp_videoURL
                                  bufferingIndicator:nil
                                        progressView:nil
@@ -284,6 +279,7 @@
             }];
         }
     }
+    //如果用户上拉加载时，又进行下滑操作，就会有闪屏问题,将请求延时十秒就会看到区别，即用户在第10个cell上拉加载了，然后又下滑倒第5个cell，当拿到返回数据之后页面会从5自动滚动到第11个cell，造成闪屏，但在3G网络下经测试抖音也是这样，故就这样吧
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.tableView jp_scrollViewDidScroll];
