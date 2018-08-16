@@ -51,24 +51,37 @@ _tableView.updating = YES;
 ```
 //拿到数据后的处理方法，主要是reloadData后面的代码
 ```
--(void)getMoreData
+//获取更多
+-(void)getDataWithPage
 {
-_isUpdating = NO;
-[self.tableView.mj_footer endRefreshing];
-int index = (int)self.pathStrings.count;
-[self.pathStrings addObjectsFromArray:@[@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4",@"http://p11s9kqxf.bkt.clouddn.com/coder.mp4",@"http://p11s9kqxf.bkt.clouddn.com/cat.mp4"]];
-[self.tableView reloadData];
+if (_tableView.index > 1) {
+//>1上拉加载
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+_tableView.updating = NO;
+if (_tableView.items.count>8) {
+//模拟数据加载完毕的操作
+[_tableView.mj_footer endRefreshingWithNoMoreData];
+}else{
+[_tableView.mj_footer endRefreshing];
+int index = (int)_tableView.items.count;
+[_tableView.items addObjectsFromArray:@[@"http://video.youji.pro/94c60ea4aa3e4c39baf3e4f1bf05369f/9d2acce89dc049da96d51eebfd85e49c-fb7c29a19e1dea4090f7127ce589aa56-ld.mp4",@"http://video.youji.pro/ddfcd4da90914882ae4cc54944b06fbe/f6bd92d685694870a01e9b837a774672-04e2b7da07bfa70385c150870ee334e8-ld.mp4",@"http://video.youji.pro/8faa3eb5248e442380fdb082674e5ce1/1f5e0f0a5d324cf59158c7cf03d01a33-c1e9d3edacaf54958a942a28315a67ee-ld.mp4"]];
+[_tableView reloadData];
 //滚动到下一个cell
-[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-NSLog(@"1w:%.f",self.tableView.contentOffset.y);
-//mjfooter高度是44，上拉加载时页面会向上偏移44像素，数据加载完毕后需要将contentOffset复位
-self.tableView.contentOffset =CGPointMake(0, self.tableView.contentOffset.y-44);
-NSLog(@"1w:%.f",self.tableView.contentOffset.y);
+[_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+
 //让cell开始播放
-VideoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-[self tableView:self.tableView willPlayVideoOnCell:cell];
-//刷新结束，开启翻页功能
-self.tableView.pagingEnabled = YES;
+VideoTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+[self tableView:_tableView willPlayVideoOnCell:cell];
+
+}
+//mjfooter高度是44，上拉加载时页面会向上偏移44像素，数据加载完毕后需要将contentOffset复位
+if ((int)_tableView.contentOffset.y%(int)kHeight>40) {
+_tableView.contentOffset =CGPointMake(0, _tableView.contentOffset.y-44);
+}
+
+});
+
+}
 }
 ```
 

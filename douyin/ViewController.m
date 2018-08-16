@@ -169,10 +169,7 @@
 //获取更多
 -(void)getDataWithPage
 {
-    if (_tableView.index == 1) {
-        //下拉刷新-我设置的分页从1开始
-        
-    }else{
+    if (_tableView.index > 1) {
         //>1上拉加载
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             _tableView.updating = NO;
@@ -192,7 +189,6 @@
                 [self tableView:_tableView willPlayVideoOnCell:cell];
                 
             }
-            NSLog(@"1w:%.f",_tableView.contentOffset.y);
             //mjfooter高度是44，上拉加载时页面会向上偏移44像素，数据加载完毕后需要将contentOffset复位
             if ((int)_tableView.contentOffset.y%(int)kHeight>40) {
                 _tableView.contentOffset =CGPointMake(0, _tableView.contentOffset.y-44);
