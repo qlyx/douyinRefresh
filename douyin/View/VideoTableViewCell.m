@@ -44,7 +44,7 @@
 {
     self.playButton.selected = NO;
     //self.jp_videoPlayView.alpha = 0;
-    [_videoImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d.jpg",(int)indexPath.row%3+1]]];
+    [_videoImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d",(int)indexPath.row%3+1]]];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.jp_videoURL = [NSURL URLWithString:str];
 

@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B3EF69E20CF6C8000835FFC /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3EF69B20CF6C7F00835FFC /* 2.jpg */; };
-		7B3EF69F20CF6C8000835FFC /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3EF69C20CF6C7F00835FFC /* 1.jpg */; };
-		7B3EF6A020CF6C8000835FFC /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3EF69D20CF6C8000835FFC /* 3.jpg */; };
-		7B3F23B620AD1E5F005F566C /* bander.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7B3F23B520AD1E5E005F566C /* bander.jpg */; };
 		7B473BFE208864C200F0B8BE /* ChoseCoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473BFD208864C200F0B8BE /* ChoseCoverViewController.m */; };
 		7B473C0120886E1200F0B8BE /* CoverImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C0020886E1200F0B8BE /* CoverImageCollectionViewCell.m */; };
 		7B473C062088824D00F0B8BE /* PublishVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B473C052088824D00F0B8BE /* PublishVideoViewController.m */; };
@@ -69,6 +65,9 @@
 		7BB35E672086EBF1004965A8 /* UITableView+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E562086EBF1004965A8 /* UITableView+WebVideoCache.m */; };
 		7BB35E682086EBF1004965A8 /* UITableViewCell+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E582086EBF1004965A8 /* UITableViewCell+WebVideoCache.m */; };
 		7BB35E692086EBF1004965A8 /* UIView+WebVideoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB35E5A2086EBF1004965A8 /* UIView+WebVideoCache.m */; };
+		CC284F3421257A720092A3E9 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = CC284F3121257A720092A3E9 /* 3.png */; };
+		CC284F3521257A720092A3E9 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = CC284F3221257A720092A3E9 /* 1.png */; };
+		CC284F3621257A720092A3E9 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = CC284F3321257A720092A3E9 /* 2.png */; };
 		F1A82B5E8B2011BE8B79C738 /* libPods-douyin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274B0E5ED4AA4E2ECB9A5B27 /* libPods-douyin.a */; };
 /* End PBXBuildFile section */
 
@@ -92,10 +91,6 @@
 /* Begin PBXFileReference section */
 		274B0E5ED4AA4E2ECB9A5B27 /* libPods-douyin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-douyin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7974DB79142035537FCF0D3B /* Pods-douyin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-douyin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-douyin/Pods-douyin.debug.xcconfig"; sourceTree = "<group>"; };
-		7B3EF69B20CF6C7F00835FFC /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		7B3EF69C20CF6C7F00835FFC /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		7B3EF69D20CF6C8000835FFC /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		7B3F23B520AD1E5E005F566C /* bander.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bander.jpg; sourceTree = "<group>"; };
 		7B473BFC208864C200F0B8BE /* ChoseCoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoseCoverViewController.h; sourceTree = "<group>"; };
 		7B473BFD208864C200F0B8BE /* ChoseCoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoseCoverViewController.m; sourceTree = "<group>"; };
 		7B473BFF20886E1200F0B8BE /* CoverImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoverImageCollectionViewCell.h; sourceTree = "<group>"; };
@@ -209,6 +204,9 @@
 		7BB35E582086EBF1004965A8 /* UITableViewCell+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+WebVideoCache.m"; sourceTree = "<group>"; };
 		7BB35E592086EBF1004965A8 /* UIView+WebVideoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebVideoCache.h"; sourceTree = "<group>"; };
 		7BB35E5A2086EBF1004965A8 /* UIView+WebVideoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebVideoCache.m"; sourceTree = "<group>"; };
+		CC284F3121257A720092A3E9 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		CC284F3221257A720092A3E9 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		CC284F3321257A720092A3E9 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		D3EC6DAE1731AF393D5215E4 /* Pods-douyin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-douyin.release.xcconfig"; path = "Pods/Target Support Files/Pods-douyin/Pods-douyin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -398,10 +396,9 @@
 		7B4C3C2C20809058000C56EF /* JXRefresh */ = {
 			isa = PBXGroup;
 			children = (
-				7B3EF69B20CF6C7F00835FFC /* 2.jpg */,
-				7B3EF69C20CF6C7F00835FFC /* 1.jpg */,
-				7B3EF69D20CF6C8000835FFC /* 3.jpg */,
-				7B3F23B520AD1E5E005F566C /* bander.jpg */,
+				CC284F3221257A720092A3E9 /* 1.png */,
+				CC284F3321257A720092A3E9 /* 2.png */,
+				CC284F3121257A720092A3E9 /* 3.png */,
 				7B4C3C2E2080990F000C56EF /* circle@2x.png */,
 				7B4C3C2D2080990F000C56EF /* circle@3x.png */,
 				7B54BA8B207F050000370B91 /* RefreshNavigitionView.h */,
@@ -657,15 +654,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC284F3521257A720092A3E9 /* 1.png in Resources */,
 				7B54BA63207EF23700370B91 /* LaunchScreen.storyboard in Resources */,
-				7B3F23B620AD1E5F005F566C /* bander.jpg in Resources */,
-				7B3EF69E20CF6C8000835FFC /* 2.jpg in Resources */,
-				7B3EF6A020CF6C8000835FFC /* 3.jpg in Resources */,
 				7B4C3C2F2080990F000C56EF /* circle@3x.png in Resources */,
-				7B3EF69F20CF6C8000835FFC /* 1.jpg in Resources */,
 				7B54BA60207EF23700370B91 /* Assets.xcassets in Resources */,
 				7B4938CB20AC34D500E40FED /* LICENSE in Resources */,
 				7B54BA5E207EF23700370B91 /* Main.storyboard in Resources */,
+				CC284F3621257A720092A3E9 /* 2.png in Resources */,
+				CC284F3421257A720092A3E9 /* 3.png in Resources */,
 				7BB35E5C2086EBF1004965A8 /* JPVideoPlayer.bundle in Resources */,
 				7B4938E020AC34D500E40FED /* README.md in Resources */,
 				7B4938DA20AC34D500E40FED /* MJRefresh.bundle in Resources */,
@@ -956,7 +952,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C66SGFPXSJ;
+				DEVELOPMENT_TEAM = 94DAZWA2Y6;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/douyin/PrefixHeader.pch";
 				INFOPLIST_FILE = douyin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -973,7 +969,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C66SGFPXSJ;
+				DEVELOPMENT_TEAM = 94DAZWA2Y6;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/douyin/PrefixHeader.pch";
 				INFOPLIST_FILE = douyin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
